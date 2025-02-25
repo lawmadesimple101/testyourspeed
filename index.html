@@ -3,20 +3,938 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Law Studies Speed Test Topic Selector</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Law Studies Quiz Speed Test</title>
+    <style>
+        :root {
+            --primary-color: #8e44ad;
+            --secondary-color: #34495e;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .quiz-intro {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .topic-selection {
+            margin: 20px 0;
+        }
+
+        .topic-selector {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--primary-color);
+            border-radius: 5px;
+            font-size: 16px;
+            color: var(--dark-color);
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .start-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .start-btn:hover {
+            background-color: #7d3c98;
+        }
+
+        .start-btn:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        .quiz-container {
+            display: none;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .question-count, .score {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .timer-container {
+            width: 100%;
+            height: 10px;
+            background-color: #eee;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .timer-bar {
+            height: 100%;
+            width: 100%;
+            background-color: var(--accent-color);
+            transition: width 0.1s linear;
+        }
+
+        .question {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .option {
+            padding: 15px;
+            background-color: var(--light-color);
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option:hover {
+            background-color: #e3e8ec;
+            border-color: var(--primary-color);
+        }
+
+        .option.correct {
+            background-color: var(--success-color);
+            color: white;
+            border-color: var(--success-color);
+        }
+
+        .option.incorrect {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .option.disabled {
+            pointer-events: none;
+        }
+
+        .results {
+            display: none;
+            text-align: center;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .results h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .score-display {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .restart-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .restart-btn:hover {
+            background-color: #7d3c98;
+        }
+
+        .upgrade-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .upgrade-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .upgrade-content h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .close-upgrade {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Styling for disabled topics */
+        option.disabled {
+            color: #bdc3c7;
+            font-style: italic;
+        }
+
+        @media (min-width: 768px) {
+            .options {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Law Studies Speed Test</h1>
-        <select id="topicSelect">
-            <option value="">Select a Topic</option>
-            <option value="https://testyourspeed.github.io/constitutionallaw/">Constitutional Law</option>
-            <option value="https://testyourspeed.github.io/criminallaw/">Criminal Law</option>
-            <option value="https://testyourspeed.github.io/contractlaw/">Contract Law</option>
-        </select>
-        <button id="goButton" disabled>Go to Test</button>
+        <header>
+            <h1>Law Studies Quiz Speed Test</h1>
+            <p>Test your knowledge with quick-fire legal questions!</p>
+        </header>
+
+        <div class="quiz-intro">
+            <h2>Ready to test your legal knowledge?</h2>
+            <p>Select a topic and answer 10 random questions. You have 20 seconds for each question!</p>
+            
+            <div class="topic-selection">
+                <label for="topic">Select Topic:</label>
+                <select id="topic" class="topic-selector">
+                    <option value="" disabled selected>Choose a topic...</option>
+                    <option value="constitutional">Constitutional Law</option>
+                    <option value="criminal">Criminal Law</option>
+                    <option value="contract">Contract Law</option>
+                    <option value="tort" disabled>Tort Law</option>
+                    <option value="property" disabled>Property Law</option>
+                    <option value="international" disabled>International Law</option>
+                    <option value="corporate" disabled>Corporate Law</option>
+                </select>
+            </div>
+            
+            <button id="start-btn" class="start-btn" disabled>Start Quiz</button>
+        </div>
+
+        <div id="quiz-container" class="quiz-container">
+            <div class="quiz-header">
+                <div class="question-count">Question <span id="current">1</span>/<span id="total">10</span></div>
+                <div class="score">Score: <span id="score">0</span></div>
+            </div>
+            
+            <div class="timer-container">
+                <div id="timer-bar" class="timer-bar"></div>
+            </div>
+            
+            <div id="question" class="question"></div>
+            
+            <div id="options" class="options"></div>
+        </div>
+
+        <div id="results" class="results">
+            <h2>Quiz Complete!</h2>
+            <div class="score-display">Your score: <span id="final-score">0</span> out of 10</div>
+            <button id="restart-btn" class="restart-btn">Take Another Quiz</button>
+        </div>
     </div>
-    <script src="script.js"></script>
-</body>
-</html>
+
+    <div id="upgrade-modal" class="upgrade-modal">
+        <div class="upgrade-content">
+            <h2>UPGRADE TO PRO</h2>
+            <p>This topic is only available in the PRO version.</p>
+            <button id="close-upgrade" class="close-upgrade">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const topicSelector = document.getElementById('topic');
+        const startButton = document.getElementById('start-btn');
+        const quizContainer = document.getElementById('quiz-container');
+        const quizIntro = document.querySelector('.quiz-intro');
+        const questionElement = document.getElementById('question');
+        const optionsContainer = document.getElementById('options');
+        const currentQuestionElement = document.getElementById('current');
+        const totalQuestionsElement = document.getElementById('total');
+        const scoreElement = document.getElementById('score');
+        const timerBar = document.getElementById('timer-bar');
+        const resultsContainer = document.getElementById('results');
+        const finalScoreElement = document.getElementById('final-score');
+        const restartButton = document.getElementById('restart-btn');
+        const upgradeModal = document.getElementById('upgrade-modal');
+        const closeUpgradeButton = document.getElementById('close-upgrade');
+
+        // Quiz state
+        let currentQuestion = 0;
+        let score = 0;
+        let timer;
+        let timeLeft;
+        let questions = [];
+        let answered = false;
+
+        // Question Banks
+        const questionBanks = {
+            constitutional: [
+                {
+                    question: "Which amendment to the U.S. Constitution guarantees freedom of speech?",
+                    options: [
+                        "First Amendment",
+                        "Second Amendment",
+                        "Fourth Amendment",
+                        "Fifth Amendment"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "What is the doctrine of 'separation of powers'?",
+                    options: [
+                        "The division between federal and state governments",
+                        "The division of government into executive, legislative, and judicial branches",
+                        "The separation of church and state",
+                        "The division between civil and criminal law"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "Which U.S. Supreme Court case established the principle of judicial review?",
+                    options: [
+                        "Roe v. Wade",
+                        "Brown v. Board of Education",
+                        "Marbury v. Madison",
+                        "Miranda v. Arizona"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "What does the Supremacy Clause of the U.S. Constitution establish?",
+                    options: [
+                        "The president has supreme power over other branches",
+                        "The Supreme Court has final authority on all legal matters",
+                        "Federal law takes precedence over state law when conflicts arise",
+                        "The Constitution is supreme over all international treaties"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "Which constitutional amendment prohibits 'unreasonable searches and seizures'?",
+                    options: [
+                        "Second Amendment",
+                        "Fourth Amendment",
+                        "Fifth Amendment",
+                        "Sixth Amendment"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What is the 'Full Faith and Credit Clause'?",
+                    options: [
+                        "A provision requiring state courts to enforce judgments rendered in other states",
+                        "A clause requiring citizens to have faith in government",
+                        "A section requiring the federal government to pay its debts",
+                        "A requirement that all citizens must pay taxes"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "The 'Commerce Clause' in the U.S. Constitution gives Congress the power to:",
+                    options: [
+                        "Regulate banks and financial institutions",
+                        "Regulate trade with foreign nations and between states",
+                        "Establish a common currency",
+                        "Create a national bank"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "Which amendment protects against 'double jeopardy'?",
+                    options: [
+                        "Fourth Amendment",
+                        "Fifth Amendment",
+                        "Sixth Amendment",
+                        "Eighth Amendment"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What does the 'Equal Protection Clause' of the 14th Amendment guarantee?",
+                    options: [
+                        "Equal voting rights for all citizens",
+                        "Equal taxation for all citizens",
+                        "Equal application of laws to all people",
+                        "Equal representation in Congress"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "Which constitutional amendment gave women the right to vote?",
+                    options: [
+                        "15th Amendment",
+                        "17th Amendment",
+                        "19th Amendment",
+                        "24th Amendment"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "What is a 'writ of habeas corpus'?",
+                    options: [
+                        "A court order requiring a person to testify",
+                        "A protection against self-incrimination",
+                        "A legal action to review the lawfulness of a person's detention",
+                        "A request for a trial by jury"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "In which Supreme Court case was the 'separate but equal' doctrine overturned?",
+                    options: [
+                        "Plessy v. Ferguson",
+                        "Brown v. Board of Education",
+                        "Roe v. Wade",
+                        "Gideon v. Wainwright"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What constitutional principle is reflected in the 10th Amendment?",
+                    options: [
+                        "Separation of powers",
+                        "Checks and balances",
+                        "Federalism",
+                        "Popular sovereignty"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "Which constitutional amendment abolished slavery?",
+                    options: [
+                        "13th Amendment",
+                        "14th Amendment",
+                        "15th Amendment",
+                        "16th Amendment"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "What is the 'establishment clause' in the First Amendment concerned with?",
+                    options: [
+                        "The right to assemble peacefully",
+                        "The prohibition against government-established religion",
+                        "The freedom of the press",
+                        "The right to petition the government"
+                    ],
+                    answer: 1
+                }
+            ],
+            criminal: [
+                {
+                    question: "What is the standard of proof in a criminal case?",
+                    options: [
+                        "Preponderance of the evidence",
+                        "Clear and convincing evidence",
+                        "Beyond a reasonable doubt",
+                        "Substantial evidence"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "What is 'mens rea'?",
+                    options: [
+                        "The criminal act itself",
+                        "The guilty mind or mental state",
+                        "The absence of intent",
+                        "Self-defense justification"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What does 'actus reus' refer to?",
+                    options: [
+                        "The guilty act or physical component of a crime",
+                        "The mental state of the defendant",
+                        "The defendant's motive",
+                        "The legal defense strategy"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "What right is established by the 'Miranda warning'?",
+                    options: [
+                        "Right to a speedy trial",
+                        "Right to an attorney and to remain silent",
+                        "Right against unreasonable search and seizure",
+                        "Right to confront witnesses"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What is the 'exclusionary rule' in criminal procedure?",
+                    options: [
+                        "Evidence obtained illegally cannot be used at trial",
+                        "Certain witnesses are excluded from testifying",
+                        "Certain crimes are excluded from prosecution",
+                        "Defendants are excluded from hearing testimony"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "What distinguishes a felony from a misdemeanor?",
+                    options: [
+                        "The age of the offender",
+                        "Whether a weapon was used",
+                        "The severity of punishment",
+                        "The type of court that has jurisdiction"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "What is 'prosecutorial discretion'?",
+                    options: [
+                        "The judge's power to determine sentences",
+                        "The prosecutor's power to decide whether to bring charges",
+                        "The jury's power to decide guilt or innocence",
+                        "The defendant's right to choose their attorney"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What is a 'plea bargain'?",
+                    options: [
+                        "A deal where prosecutors drop charges in exchange for testimony",
+                        "An agreement where the defendant pleads guilty for reduced charges or sentence",
+                        "A request by the defense for a more lenient judge",
+                        "An appeal to a higher court"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What is 'double jeopardy'?",
+                    options: [
+                        "Being tried twice for the same offense",
+                        "Committing two crimes at once",
+                        "Facing both civil and criminal liability",
+                        "Being charged in both state and federal courts"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "What Supreme Court case established that defendants must be provided with an attorney if they cannot afford one?",
+                    options: [
+                        "Miranda v. Arizona",
+                        "Brady v. Maryland",
+                        "Gideon v. Wainwright",
+                        "Mapp v. Ohio"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "What is the legal term for a criminal defendant's state of mind that indicates criminal intent?",
+                    options: [
+                        "Mens rea",
+                        "Actus reus",
+                        "Respondeat superior",
+                        "Stare decisis"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "In criminal law, what is an 'affirmative defense'?",
+                    options: [
+                        "A defense that proves the defendant's innocence",
+                        "A defense strategy that admits the act but claims it was justified",
+                        "A defense based solely on the prosecutor's lack of evidence",
+                        "A defense claiming the defendant was elsewhere during the crime"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What is the concept of 'transferred intent' in criminal law?",
+                    options: [
+                        "When one person takes responsibility for another's crime",
+                        "When intent to harm one person transfers to another unintended victim",
+                        "When a minor's criminal responsibility transfers to a parent",
+                        "When criminal intent passes from one defendant to a co-conspirator"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What is a 'lesser included offense'?",
+                    options: [
+                        "A misdemeanor that accompanies a felony charge",
+                        "A crime committed by a juvenile",
+                        "A crime that contains some but not all elements of a greater crime",
+                        "A crime with a reduced sentence due to mitigating factors"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "What is 'probable cause' in the context of criminal procedure?",
+                    options: [
+                        "Evidence that definitively proves guilt",
+                        "Reasonable basis for believing a crime has been committed",
+                        "Direct observation of criminal activity",
+                        "Suspicion based on a defendant's prior record"
+                    ],
+                    answer: 1
+                }
+            ],
+            contract: [
+                {
+                    question: "What are the essential elements needed to form a valid contract?",
+                    options: [
+                        "Offer, acceptance, writing, and enforcement",
+                        "Offer, acceptance, consideration, and legal capacity",
+                        "Agreement, intention, payment, and witnesses",
+                        "Proposal, agreement, signature, and notarization"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What is 'consideration' in contract law?",
+                    options: [
+                        "The thoughtful examination of contract terms",
+                        "Something of value exchanged between parties",
+                        "The respectful treatment of both parties",
+                        "The formal signing process"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What is a 'void contract'?",
+                    options: [
+                        "A contract that has not been signed",
+                        "A contract that one party can choose to void",
+                        "A contract that has no legal effect from the beginning",
+                        "A contract that has been breached"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "Under what circumstances might a contract be 'voidable'?",
+                    options: [
+                        "When it is for an illegal purpose",
+                        "When one party is under duress or misled",
+                        "When the contract has a specific end date",
+                        "When both parties agree to terminate it"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What is the 'parol evidence rule'?",
+                    options: [
+                        "Evidence from convicted criminals cannot be used in contract disputes",
+                        "Oral agreements made after a written contract cannot modify it",
+                        "Prior or contemporaneous oral agreements cannot contradict written contracts",
+                        "Contract disputes must be settled through written evidence only"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "What is a 'unilateral contract'?",
+                    options: [
+                        "A contract where only one party makes a promise",
+                        "A contract that benefits only one party",
+                        "A contract that can be canceled by only one party",
+                        "A contract between only two individuals"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "What is the 'mailbox rule' in contract law?",
+                    options: [
+                        "Contracts sent by mail are more legally binding",
+                        "Contracts must be delivered by certified mail",
+                        "Acceptance takes effect when sent, not when received",
+                        "Contract notifications must be sent through postal mail"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "What is 'specific performance' as a remedy for breach of contract?",
+                    options: [
+                        "Monetary damages calculated with specific formulas",
+                        "A court order requiring the breaching party to fulfill their obligations",
+                        "Performance of the contract under specific court supervision",
+                        "An exact accounting of all damages caused by the breach"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What doctrine requires parties to mitigate damages after a breach of contract?",
+                    options: [
+                        "Doctrine of mitigation",
+                        "Doctrine of avoidable consequences",
+                        "Doctrine of reasonable efforts",
+                        "Doctrine of minimum damages"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "What is a 'liquidated damages' clause?",
+                    options: [
+                        "A clause specifying damages to be paid if the contract is breached",
+                        "A clause requiring the losing party to pay legal costs",
+                        "A clause allowing for damages to be paid in installments",
+                        "A clause converting property assets to cash"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "What does the 'Statute of Frauds' require?",
+                    options: [
+                        "All contracts must be notarized",
+                        "Certain types of contracts must be in writing",
+                        "Contracts must include anti-fraud provisions",
+                        "Contract witnesses must sign the agreement"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What is an 'adhesion contract'?",
+                    options: [
+                        "A contract signed under pressure",
+                        "A standard form contract offered on a 'take it or leave it' basis",
+                        "A contract between multiple parties",
+                        "A contract that automatically renews"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What is 'promissory estoppel'?",
+                    options: [
+                        "A legal ban on making certain types of promises",
+                        "A doctrine preventing someone from going back on a promise when others relied on it",
+                        "A penalty for breaking contractual promises",
+                        "A clause stopping parties from making additional promises"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What is a 'third-party beneficiary'?",
+                    options: [
+                        "Someone who witnesses a contract signing",
+                        "Someone not party to a contract but who benefits from it",
+                        "Someone who guarantees a contract will be fulfilled",
+                        "Someone who mediates contract disputes"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What is the difference between an 'express' and 'implied' contract?",
+                    options: [
+                        "Express contracts are written, implied contracts are verbal",
+                        "Express contracts are explicitly agreed to, implied contracts are inferred from conduct",
+                        "Express contracts are legally binding, implied contracts are not",
+                        "Express contracts have consideration, implied contracts do not"
+                    ],
+                    answer: 1
+                }
+            ]
+        };
+
+        // Event Listeners
+        topicSelector.addEventListener('change', handleTopicSelection);
+        startButton.addEventListener('click', startQuiz);
+        restartButton.addEventListener('click', restartQuiz);
+        closeUpgradeButton.addEventListener('click', closeUpgradeModal);
+
+        // Disable non-clickable options
+        const disabledOptions = Array.from(topicSelector.options).filter(option => option.disabled);
+        disabledOptions.forEach(option => {
+            option.classList.add('disabled');
+            option.addEventListener('mousedown', function(e) {
+                e.preventDefault();
+                if (this.value && this.disabled) {
+                    showUpgradeModal();
+                }
+                return false;
+            });
+        });
+
+        // Functions
+        function handleTopicSelection() {
+            if (topicSelector.value) {
+                startButton.disabled = false;
+            } else {
+                startButton.disabled = true;
+            }
+        }
+
+        function showUpgradeModal() {
+            upgradeModal.style.display = 'flex';
+        }
+
+        function closeUpgradeModal() {
+            upgradeModal.style.display = 'none';
+        }
+
+        function startQuiz() {
+            // Reset quiz state
+            currentQuestion = 0;
+            score = 0;
+            scoreElement.textContent = '0';
+            
+            // Get selected topic
+            const topic = topicSelector.value;
+            
+            // Select 10 random questions from the topic
+            const allQuestions = questionBanks[topic];
+            questions = getRandomQuestions(allQuestions, 10);
+            
+            // Hide intro, show quiz
+            quizIntro.style.display = 'none';
+            quizContainer.style.display = 'block';
+            resultsContainer.style.display = 'none';
+            
+            // Load first question
+            loadQuestion(currentQuestion);
+        }
+
+        function getRandomQuestions(questions, count) {
+            const shuffled = [...questions].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+
+        function loadQuestion(index) {
+            if (index >= questions.length) {
+                showResults();
+                return;
+            }
+            
+            answered = false;
+            const question = questions[index];
+            
+            // Update question counter
+            currentQuestionElement.textContent = index + 1;
+            totalQuestionsElement.textContent = questions.length;
+            
+            // Display question
+            questionElement.textContent = question.question;
+            
+            // Clear previous options
+            optionsContainer.innerHTML = '';
+            
+            // Add options
+            question.options.forEach((option, i) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                optionElement.textContent = option;
+                optionElement.dataset.index = i;
+                optionElement.addEventListener('click', checkAnswer);
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // Start timer
+            startTimer();
+        }
+
+        function startTimer() {
+            clearInterval(timer);
+            timeLeft = 20;
+            timerBar.style.width = '100%';
+            
+            timer = setInterval(() => {
+                timeLeft -= 0.1;
+                const percentage = (timeLeft / 20) * 100;
+                timerBar.style.width = `${percentage}%`;
+                
+                // Color changes based on time left
+                if (percentage < 30) {
+                    timerBar.style.backgroundColor = '#e74c3c'; // Red when time is running out
+                } else if (percentage < 60) {
+                    timerBar.style.backgroundColor = '#f39c12'; // Orange when at medium
+                } else {
+                    timerBar.style.backgroundColor = '#2ecc71'; // Green when plenty of time
+                }
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    if (!answered) {
+                        // Time's up - show correct answer
+                        const correctIndex = questions[currentQuestion].answer;
+                        const options = document.querySelectorAll('.option');
+                        options.forEach(option => {
+                            const optionIndex = parseInt(option.dataset.index);
+                            if (optionIndex === correctIndex) {
+                                option.classList.add('correct');
+                            }
+                            option.classList.add('disabled');
+                        });
+                        
+                        // Move to next question after delay
+                        setTimeout(() => {
+                            currentQuestion++;
+                            loadQuestion(currentQuestion);
+                        }, 1500);
+                    }
+                }
+            }, 100);
+        }
