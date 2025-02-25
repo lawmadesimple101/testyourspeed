@@ -7,7 +7,7 @@
     <style>
         :root {
             --primary-color: #8e44ad;
-            --secondary-color: #34495e;
+            --secondary-color: #2c3e50;
             --accent-color: #e74c3c;
             --light-color: #ecf0f1;
             --dark-color: #2c3e50;
@@ -344,27 +344,27 @@
         const questionBanks = {
             constitutional: [
                 {
-                    question: "Which amendment to the U.S. Constitution guarantees freedom of speech?",
+                    question: "Which amendment to the U.S. Constitution protects freedom of speech?",
                     options: [
                         "First Amendment",
-                        "Second Amendment",
                         "Fourth Amendment",
-                        "Fifth Amendment"
+                        "Fifth Amendment",
+                        "Tenth Amendment"
                     ],
                     answer: 0
                 },
                 {
-                    question: "What is the doctrine of 'separation of powers'?",
+                    question: "What is the process of reviewing judicial, legislative, and executive acts for their constitutionality called?",
                     options: [
-                        "The division between federal and state governments",
-                        "The division of government into executive, legislative, and judicial branches",
-                        "The separation of church and state",
-                        "The division between civil and criminal law"
+                        "Constitutional oversight",
+                        "Judicial review",
+                        "Legal compliance",
+                        "Constitutional assessment"
                     ],
                     answer: 1
                 },
                 {
-                    question: "Which U.S. Supreme Court case established the principle of judicial review?",
+                    question: "Which landmark Supreme Court case established judicial review?",
                     options: [
                         "Roe v. Wade",
                         "Brown v. Board of Education",
@@ -374,47 +374,259 @@
                     answer: 2
                 },
                 {
-                    question: "What does the Supremacy Clause of the U.S. Constitution establish?",
-                    options: [
-                        "The president has supreme power over other branches",
-                        "The Supreme Court has final authority on all legal matters",
-                        "Federal law takes precedence over state law when conflicts arise",
-                        "The Constitution is supreme over all international treaties"
-                    ],
-                    answer: 2
-                },
-                {
-                    question: "Which constitutional amendment prohibits 'unreasonable searches and seizures'?",
+                    question: "Which constitutional amendment prohibits unreasonable searches and seizures?",
                     options: [
                         "Second Amendment",
                         "Fourth Amendment",
-                        "Fifth Amendment",
-                        "Sixth Amendment"
+                        "Sixth Amendment",
+                        "Eighth Amendment"
                     ],
                     answer: 1
                 },
                 {
-                    question: "What is the 'Full Faith and Credit Clause'?",
+                    question: "What constitutional principle divides power between the federal government and states?",
                     options: [
-                        "A provision requiring state courts to enforce judgments rendered in other states",
-                        "A clause requiring citizens to have faith in government",
-                        "A section requiring the federal government to pay its debts",
-                        "A requirement that all citizens must pay taxes"
+                        "Checks and balances",
+                        "Federalism",
+                        "Separation of powers",
+                        "Popular sovereignty"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "Under the U.S. Constitution, how many justices serve on the Supreme Court?",
+                    options: [
+                        "7",
+                        "9",
+                        "11",
+                        "The Constitution does not specify"
+                    ],
+                    answer: 3
+                },
+                {
+                    question: "Which amendment guarantees the right to a speedy and public trial?",
+                    options: [
+                        "Fifth Amendment",
+                        "Sixth Amendment",
+                        "Seventh Amendment",
+                        "Eighth Amendment"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "The 'Equal Protection Clause' is found in which amendment?",
+                    options: [
+                        "First Amendment",
+                        "Fifth Amendment",
+                        "Tenth Amendment",
+                        "Fourteenth Amendment"
+                    ],
+                    answer: 3
+                },
+                {
+                    question: "Which constitutional doctrine allows Congress to make laws not expressly mentioned in the Constitution?",
+                    options: [
+                        "Judicial review",
+                        "Implied powers",
+                        "Executive privilege",
+                        "Reserved powers"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "Which amendment abolished slavery in the United States?",
+                    options: [
+                        "Tenth Amendment",
+                        "Thirteenth Amendment",
+                        "Fifteenth Amendment",
+                        "Eighteenth Amendment"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What is the 'Commerce Clause' of the U.S. Constitution?",
+                    options: [
+                        "The power to regulate interstate commerce",
+                        "The power to impose tariffs on foreign goods",
+                        "The power to print currency",
+                        "The power to establish post offices"
                     ],
                     answer: 0
                 },
                 {
-                    question: "The 'Commerce Clause' in the U.S. Constitution gives Congress the power to:",
+                    question: "The 'Establishment Clause' in the First Amendment prevents:",
                     options: [
-                        "Regulate banks and financial institutions",
-                        "Regulate trade with foreign nations and between states",
-                        "Establish a common currency",
-                        "Create a national bank"
+                        "Freedom of the press",
+                        "Creation of a national religion",
+                        "Right to bear arms",
+                        "Unreasonable searches"
                     ],
                     answer: 1
                 },
                 {
-                    question: "Which amendment protects against 'double jeopardy'?",
+                    question: "In which Supreme Court case was the 'separate but equal' doctrine overturned?",
+                    options: [
+                        "Plessy v. Ferguson",
+                        "Brown v. Board of Education",
+                        "Dred Scott v. Sandford",
+                        "Korematsu v. United States"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "Which constitutional amendment gives citizens the right to bear arms?",
+                    options: [
+                        "First Amendment",
+                        "Second Amendment",
+                        "Third Amendment",
+                        "Fourth Amendment"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What is the constitutional requirement for presidential eligibility regarding age?",
+                    options: [
+                        "At least 25 years old",
+                        "At least 30 years old",
+                        "At least 35 years old",
+                        "At least 40 years old"
+                    ],
+                    answer: 2
+                }
+            ],
+            criminal: [
+                {
+                    question: "What is the standard of proof in criminal cases?",
+                    options: [
+                        "Preponderance of evidence",
+                        "Clear and convincing evidence",
+                        "Beyond a reasonable doubt",
+                        "Prima facie evidence"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "Which of the following is NOT an element of the crime of larceny?",
+                    options: [
+                        "Taking of property",
+                        "Use of force or fear",
+                        "Without consent",
+                        "Intent to permanently deprive"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What is 'mens rea' in criminal law?",
+                    options: [
+                        "The physical act of a crime",
+                        "Self-defense claim",
+                        "Mental state or intent",
+                        "Evidence collection process"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "Which case established that suspects must be informed of their rights before interrogation?",
+                    options: [
+                        "Brown v. Board of Education",
+                        "Miranda v. Arizona",
+                        "Roe v. Wade",
+                        "Gideon v. Wainwright"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What is 'actus reus' in criminal law?",
+                    options: [
+                        "Mental state or intent",
+                        "Guilty act or physical component of a crime",
+                        "Defendant's motive",
+                        "Legal defense strategy"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "Which of the following is a strict liability crime?",
+                    options: [
+                        "Assault",
+                        "Statutory rape",
+                        "Burglary",
+                        "Robbery"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What is 'felony murder'?",
+                    options: [
+                        "Any murder with premeditation",
+                        "A murder committed during the commission of a felony",
+                        "Killing of a police officer",
+                        "Multiple homicides"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "Which of these is NOT a justification defense in criminal law?",
+                    options: [
+                        "Self-defense",
+                        "Necessity",
+                        "Entrapment",
+                        "Defense of others"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "What is 'corpus delicti' in criminal law?",
+                    options: [
+                        "Evidence that a crime actually occurred",
+                        "The body of the victim in a murder case",
+                        "A written confession",
+                        "The criminal intent"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "Which of the following is NOT a white-collar crime?",
+                    options: [
+                        "Embezzlement",
+                        "Insider trading",
+                        "Robbery",
+                        "Tax evasion"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "What is the difference between murder and manslaughter?",
+                    options: [
+                        "Method used to kill",
+                        "Number of victims",
+                        "Level of intent or premeditation",
+                        "Age of the victim"
+                    ],
+                    answer: 2
+                },
+                {
+                    question: "Which of these is an affirmative defense in criminal law?",
+                    options: [
+                        "Lack of evidence",
+                        "Alibi",
+                        "Prosecution misconduct",
+                        "Mistaken identity"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What is 'double jeopardy' in criminal law?",
+                    options: [
+                        "Being charged with two crimes for one act",
+                        "Being tried twice for the same offense",
+                        "Having two separate trials for related crimes",
+                        "Being charged in both state and federal courts"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "Which amendment protects against self-incrimination?",
                     options: [
                         "Fourth Amendment",
                         "Fifth Amendment",
@@ -424,376 +636,164 @@
                     answer: 1
                 },
                 {
-                    question: "What does the 'Equal Protection Clause' of the 14th Amendment guarantee?",
+                    question: "What is the difference between larceny and robbery?",
                     options: [
-                        "Equal voting rights for all citizens",
-                        "Equal taxation for all citizens",
-                        "Equal application of laws to all people",
-                        "Equal representation in Congress"
-                    ],
-                    answer: 2
-                },
-                {
-                    question: "Which constitutional amendment gave women the right to vote?",
-                    options: [
-                        "15th Amendment",
-                        "17th Amendment",
-                        "19th Amendment",
-                        "24th Amendment"
-                    ],
-                    answer: 2
-                },
-                {
-                    question: "What is a 'writ of habeas corpus'?",
-                    options: [
-                        "A court order requiring a person to testify",
-                        "A protection against self-incrimination",
-                        "A legal action to review the lawfulness of a person's detention",
-                        "A request for a trial by jury"
-                    ],
-                    answer: 2
-                },
-                {
-                    question: "In which Supreme Court case was the 'separate but equal' doctrine overturned?",
-                    options: [
-                        "Plessy v. Ferguson",
-                        "Brown v. Board of Education",
-                        "Roe v. Wade",
-                        "Gideon v. Wainwright"
-                    ],
-                    answer: 1
-                },
-                {
-                    question: "What constitutional principle is reflected in the 10th Amendment?",
-                    options: [
-                        "Separation of powers",
-                        "Checks and balances",
-                        "Federalism",
-                        "Popular sovereignty"
-                    ],
-                    answer: 2
-                },
-                {
-                    question: "Which constitutional amendment abolished slavery?",
-                    options: [
-                        "13th Amendment",
-                        "14th Amendment",
-                        "15th Amendment",
-                        "16th Amendment"
-                    ],
-                    answer: 0
-                },
-                {
-                    question: "What is the 'establishment clause' in the First Amendment concerned with?",
-                    options: [
-                        "The right to assemble peacefully",
-                        "The prohibition against government-established religion",
-                        "The freedom of the press",
-                        "The right to petition the government"
-                    ],
-                    answer: 1
-                }
-            ],
-            criminal: [
-                {
-                    question: "What is the standard of proof in a criminal case?",
-                    options: [
-                        "Preponderance of the evidence",
-                        "Clear and convincing evidence",
-                        "Beyond a reasonable doubt",
-                        "Substantial evidence"
-                    ],
-                    answer: 2
-                },
-                {
-                    question: "What is 'mens rea'?",
-                    options: [
-                        "The criminal act itself",
-                        "The guilty mind or mental state",
-                        "The absence of intent",
-                        "Self-defense justification"
-                    ],
-                    answer: 1
-                },
-                {
-                    question: "What does 'actus reus' refer to?",
-                    options: [
-                        "The guilty act or physical component of a crime",
-                        "The mental state of the defendant",
-                        "The defendant's motive",
-                        "The legal defense strategy"
-                    ],
-                    answer: 0
-                },
-                {
-                    question: "What right is established by the 'Miranda warning'?",
-                    options: [
-                        "Right to a speedy trial",
-                        "Right to an attorney and to remain silent",
-                        "Right against unreasonable search and seizure",
-                        "Right to confront witnesses"
-                    ],
-                    answer: 1
-                },
-                {
-                    question: "What is the 'exclusionary rule' in criminal procedure?",
-                    options: [
-                        "Evidence obtained illegally cannot be used at trial",
-                        "Certain witnesses are excluded from testifying",
-                        "Certain crimes are excluded from prosecution",
-                        "Defendants are excluded from hearing testimony"
-                    ],
-                    answer: 0
-                },
-                {
-                    question: "What distinguishes a felony from a misdemeanor?",
-                    options: [
-                        "The age of the offender",
-                        "Whether a weapon was used",
-                        "The severity of punishment",
-                        "The type of court that has jurisdiction"
-                    ],
-                    answer: 2
-                },
-                {
-                    question: "What is 'prosecutorial discretion'?",
-                    options: [
-                        "The judge's power to determine sentences",
-                        "The prosecutor's power to decide whether to bring charges",
-                        "The jury's power to decide guilt or innocence",
-                        "The defendant's right to choose their attorney"
-                    ],
-                    answer: 1
-                },
-                {
-                    question: "What is a 'plea bargain'?",
-                    options: [
-                        "A deal where prosecutors drop charges in exchange for testimony",
-                        "An agreement where the defendant pleads guilty for reduced charges or sentence",
-                        "A request by the defense for a more lenient judge",
-                        "An appeal to a higher court"
-                    ],
-                    answer: 1
-                },
-                {
-                    question: "What is 'double jeopardy'?",
-                    options: [
-                        "Being tried twice for the same offense",
-                        "Committing two crimes at once",
-                        "Facing both civil and criminal liability",
-                        "Being charged in both state and federal courts"
-                    ],
-                    answer: 0
-                },
-                {
-                    question: "What Supreme Court case established that defendants must be provided with an attorney if they cannot afford one?",
-                    options: [
-                        "Miranda v. Arizona",
-                        "Brady v. Maryland",
-                        "Gideon v. Wainwright",
-                        "Mapp v. Ohio"
-                    ],
-                    answer: 2
-                },
-                {
-                    question: "What is the legal term for a criminal defendant's state of mind that indicates criminal intent?",
-                    options: [
-                        "Mens rea",
-                        "Actus reus",
-                        "Respondeat superior",
-                        "Stare decisis"
-                    ],
-                    answer: 0
-                },
-                {
-                    question: "In criminal law, what is an 'affirmative defense'?",
-                    options: [
-                        "A defense that proves the defendant's innocence",
-                        "A defense strategy that admits the act but claims it was justified",
-                        "A defense based solely on the prosecutor's lack of evidence",
-                        "A defense claiming the defendant was elsewhere during the crime"
-                    ],
-                    answer: 1
-                },
-                {
-                    question: "What is the concept of 'transferred intent' in criminal law?",
-                    options: [
-                        "When one person takes responsibility for another's crime",
-                        "When intent to harm one person transfers to another unintended victim",
-                        "When a minor's criminal responsibility transfers to a parent",
-                        "When criminal intent passes from one defendant to a co-conspirator"
-                    ],
-                    answer: 1
-                },
-                {
-                    question: "What is a 'lesser included offense'?",
-                    options: [
-                        "A misdemeanor that accompanies a felony charge",
-                        "A crime committed by a juvenile",
-                        "A crime that contains some but not all elements of a greater crime",
-                        "A crime with a reduced sentence due to mitigating factors"
-                    ],
-                    answer: 2
-                },
-                {
-                    question: "What is 'probable cause' in the context of criminal procedure?",
-                    options: [
-                        "Evidence that definitively proves guilt",
-                        "Reasonable basis for believing a crime has been committed",
-                        "Direct observation of criminal activity",
-                        "Suspicion based on a defendant's prior record"
+                        "The value of property taken",
+                        "The use of force or intimidation in robbery",
+                        "Larceny involves breaking and entering",
+                        "Robbery is only for commercial properties"
                     ],
                     answer: 1
                 }
             ],
             contract: [
                 {
-                    question: "What are the essential elements needed to form a valid contract?",
+                    question: "What are the essential elements of a valid contract?",
                     options: [
-                        "Offer, acceptance, writing, and enforcement",
-                        "Offer, acceptance, consideration, and legal capacity",
-                        "Agreement, intention, payment, and witnesses",
-                        "Proposal, agreement, signature, and notarization"
+                        "Offer, acceptance, consideration, legal capacity",
+                        "Offer, counteroffer, payment, signature",
+                        "Promise, performance, damages, remedy",
+                        "Agreement, witness, notarization, registration"
                     ],
-                    answer: 1
+                    answer: 0
                 },
                 {
                     question: "What is 'consideration' in contract law?",
                     options: [
-                        "The thoughtful examination of contract terms",
-                        "Something of value exchanged between parties",
-                        "The respectful treatment of both parties",
-                        "The formal signing process"
+                        "The amount of money paid",
+                        "Something of value exchanged between the parties",
+                        "The time period to consider the offer",
+                        "The physical document of the contract"
                     ],
                     answer: 1
                 },
                 {
-                    question: "What is a 'void contract'?",
+                    question: "Which of these would make a contract voidable?",
                     options: [
-                        "A contract that has not been signed",
-                        "A contract that one party can choose to void",
-                        "A contract that has no legal effect from the beginning",
-                        "A contract that has been breached"
-                    ],
-                    answer: 2
-                },
-                {
-                    question: "Under what circumstances might a contract be 'voidable'?",
-                    options: [
-                        "When it is for an illegal purpose",
-                        "When one party is under duress or misled",
-                        "When the contract has a specific end date",
-                        "When both parties agree to terminate it"
+                        "Mutual mistake",
+                        "Fraud",
+                        "Illegal purpose",
+                        "Lack of consideration"
                     ],
                     answer: 1
-                },
-                {
-                    question: "What is the 'parol evidence rule'?",
-                    options: [
-                        "Evidence from convicted criminals cannot be used in contract disputes",
-                        "Oral agreements made after a written contract cannot modify it",
-                        "Prior or contemporaneous oral agreements cannot contradict written contracts",
-                        "Contract disputes must be settled through written evidence only"
-                    ],
-                    answer: 2
-                },
-                {
-                    question: "What is a 'unilateral contract'?",
-                    options: [
-                        "A contract where only one party makes a promise",
-                        "A contract that benefits only one party",
-                        "A contract that can be canceled by only one party",
-                        "A contract between only two individuals"
-                    ],
-                    answer: 0
                 },
                 {
                     question: "What is the 'mailbox rule' in contract law?",
                     options: [
-                        "Contracts sent by mail are more legally binding",
                         "Contracts must be delivered by certified mail",
-                        "Acceptance takes effect when sent, not when received",
-                        "Contract notifications must be sent through postal mail"
+                        "Acceptance is effective upon dispatch",
+                        "Email contracts are not legally binding",
+                        "A contract must be in writing if sent by mail"
+                    ],
+                    answer: 1
+                },
+                {
+                    question: "What is a 'breach of contract'?",
+                    options: [
+                        "Breaking the physical copy of a contract",
+                        "Renegotiating the terms",
+                        "Failure to fulfill contractual obligations",
+                        "Signing a contract under duress"
                     ],
                     answer: 2
                 },
                 {
-                    question: "What is 'specific performance' as a remedy for breach of contract?",
+                    question: "Under the Statute of Frauds, which of these contracts must be in writing?",
                     options: [
-                        "Monetary damages calculated with specific formulas",
-                        "A court order requiring the breaching party to fulfill their obligations",
-                        "Performance of the contract under specific court supervision",
-                        "An exact accounting of all damages caused by the breach"
+                        "All business contracts",
+                        "Contracts for the sale of goods under $500",
+                        "Employment contracts for less than one year",
+                        "Contracts for the sale of real property"
+                    ],
+                    answer: 3
+                },
+                {
+                    question: "What is an 'implied contract'?",
+                    options: [
+                        "A contract formed by the actions of the parties rather than explicit words",
+                        "A contract that has expired but is still honored",
+                        "A contract that is not legally enforceable",
+                        "A contract between family members"
+                    ],
+                    answer: 0
+                },
+                {
+                    question: "What is 'specific performance' as a contract remedy?",
+                    options: [
+                        "Monetary damages for breach",
+                        "Court order requiring the performance of the contract as specified",
+                        "Termination of the contract",
+                        "Public announcement of the breach"
                     ],
                     answer: 1
                 },
                 {
-                    question: "What doctrine requires parties to mitigate damages after a breach of contract?",
+                    question: "What is the 'parol evidence rule' in contract law?",
                     options: [
-                        "Doctrine of mitigation",
-                        "Doctrine of avoidable consequences",
-                        "Doctrine of reasonable efforts",
-                        "Doctrine of minimum damages"
+                        "All contracts must be in writing",
+                        "Verbal contracts are never enforceable",
+                        "Prior oral agreements are inadmissible to vary terms of a written contract",
+                        "Evidence from criminals cannot be used in contract disputes"
                     ],
-                    answer: 0
+                    answer: 2
+                },
+                {
+                    question: "Which of these would NOT typically constitute a valid offer in contract law?",
+                    options: [
+                        "A detailed proposal with specific terms",
+                        "An advertisement in a newspaper",
+                        "A signed letter proposing a business deal",
+                        "A formal bid on a construction project"
+                    ],
+                    answer: 1
                 },
                 {
                     question: "What is a 'liquidated damages' clause?",
                     options: [
-                        "A clause specifying damages to be paid if the contract is breached",
-                        "A clause requiring the losing party to pay legal costs",
-                        "A clause allowing for damages to be paid in installments",
-                        "A clause converting property assets to cash"
+                        "A provision specifying how much parties must pay if they breach the contract",
+                        "Damages for breach that must be paid in cash",
+                        "Damages awarded by a judge in court",
+                        "A provision making the contract void if payment is late"
                     ],
                     answer: 0
                 },
                 {
-                    question: "What does the 'Statute of Frauds' require?",
-                    options: [
-                        "All contracts must be notarized",
-                        "Certain types of contracts must be in writing",
-                        "Contracts must include anti-fraud provisions",
-                        "Contract witnesses must sign the agreement"
-                    ],
-                    answer: 1
-                },
-                {
-                    question: "What is an 'adhesion contract'?",
-                    options: [
-                        "A contract signed under pressure",
-                        "A standard form contract offered on a 'take it or leave it' basis",
-                        "A contract between multiple parties",
-                        "A contract that automatically renews"
-                    ],
-                    answer: 1
-                },
-                {
                     question: "What is 'promissory estoppel'?",
                     options: [
-                        "A legal ban on making certain types of promises",
-                        "A doctrine preventing someone from going back on a promise when others relied on it",
-                        "A penalty for breaking contractual promises",
-                        "A clause stopping parties from making additional promises"
+                        "A written promise to pay",
+                        "A legal doctrine preventing a person from going back on a promise",
+                        "A clause limiting liability",
+                        "A contract between family members"
                     ],
                     answer: 1
                 },
                 {
-                    question: "What is a 'third-party beneficiary'?",
+                    question: "Which of these is NOT a way to discharge a contract?",
                     options: [
-                        "Someone who witnesses a contract signing",
-                        "Someone not party to a contract but who benefits from it",
-                        "Someone who guarantees a contract will be fulfilled",
-                        "Someone who mediates contract disputes"
+                        "Performance",
+                        "Mutual agreement",
+                        "Breach",
+                        "Renegotiation"
+                    ],
+                    answer: 3
+                },
+                {
+                    question: "What is a 'unilateral contract'?",
+                    options: [
+                        "A contract between only one party",
+                        "A contract where only one party makes a promise in exchange for an act",
+                        "A contract that can be modified by one party",
+                        "A contract written in only one language"
                     ],
                     answer: 1
                 },
                 {
-                    question: "What is the difference between an 'express' and 'implied' contract?",
+                    question: "What does the 'mirror image rule' in contract law state?",
                     options: [
-                        "Express contracts are written, implied contracts are verbal",
-                        "Express contracts are explicitly agreed to, implied contracts are inferred from conduct",
-                        "Express contracts are legally binding, implied contracts are not",
-                        "Express contracts have consideration, implied contracts do not"
+                        "Both parties must receive identical copies of the contract",
+                        "An acceptance must match the terms of the offer exactly",
+                        "Contract terms must be clear enough to be understood",
+                        "Both parties must understand the contract equally"
                     ],
                     answer: 1
                 }
@@ -938,6 +938,41 @@
                 }
             }, 100);
         }
+
+        function checkAnswer(e) {
+            if (answered) return;
+            
+            answered = true;
+            clearInterval(timer);
+            
+            const selectedOption = e.target;
+            const selectedIndex = parseInt(selectedOption.dataset.index);
+            const correctIndex = questions[currentQuestion].answer;
+            
+            // Disable all options
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => {
+                option.classList.add('disabled');
+            });
+            
+            // Check if answer is correct
+            if (selectedIndex === correctIndex) {
+                selectedOption.classList.add('correct');
+                score++;
+                scoreElement.textContent = score;
+            } else {
+                selectedOption.classList.add('incorrect');
+                // Show correct answer
+                options[correctIndex].classList.add('correct');
+            }
+            
+            // Move to next question after delay
+            setTimeout(() => {
+                currentQuestion++;
+                loadQuestion(currentQuestion);
+            }, 1500);
+        }
+
         function showResults() {
             quizContainer.style.display = 'none';
             resultsContainer.style.display = 'block';
